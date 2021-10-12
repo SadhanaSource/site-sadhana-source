@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-
 import { MenuComponent } from './menu.component';
 import { MenuToggleComponent } from './menu-toggle/menu-toggle.component';
-import { SubMenuComponent } from './menu-dash/sub-menu/sub-menu.component';
 import { MenuDashComponent } from './menu-dash/menu-dash.component';
 
 @NgModule({
@@ -13,7 +11,6 @@ import { MenuDashComponent } from './menu-dash/menu-dash.component';
     MenuComponent,
     MenuToggleComponent,
     MenuDashComponent,
-    SubMenuComponent,
   ],
   imports: [
     CommonModule,

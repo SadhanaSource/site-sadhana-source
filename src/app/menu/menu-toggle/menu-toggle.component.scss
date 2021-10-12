@@ -1,11 +1,11 @@
-@import "~variables.scss";
+@import "variables.scss";
 
 .toggle {
   z-index: 43;
   position: fixed;
 
-  width: calc(#{$ma-header-height} - 1rem);
-  height: calc(#{$ma-header-height} - 1rem);
+  width: calc(#{$header-height} - 1rem);
+  height: calc(#{$header-height} - 1rem);
 
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@
   &::before {
     content: '';
     position: absolute;
-    width: calc(#{$ma-header-height} / 2);
+    width: calc(#{$header-height} / 2);
     height: 2px;
     background: $white;
     transition: 0.2s;
@@ -30,7 +30,7 @@
   &::after {
     content: '';
     position: absolute;
-    width: calc(#{$ma-header-height} / 2);
+    width: calc(#{$header-height} / 2);
     height: 2px;
     background: $white;
     transition: 0.2s;

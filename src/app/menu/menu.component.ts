@@ -8,7 +8,7 @@ import { Toggle } from 'app/interfaces/switches.interface';
 // Services
 
 @Component({
-  selector: 'mint-menu',
+  selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })

@@ -3,10 +3,17 @@ $guru-orange:#ee7752;
 $guru-pink: #e73c7e;
 $guru-blue: #23a6d5;
 $guru-green: #23d5ab;
+$guru-white: #FFFFFF;
+
+$white: #fff;
+$lime-green: #B7F01C;
+$dark-purple: #5E24C7;
+
 
 //variables;
 $header-height: 4rem;
 $height-less-header: calc(100vh - #{$header-height});
+$default-border-radius: 4px;
 
 @mixin mobile($orientation: portrait) {
 

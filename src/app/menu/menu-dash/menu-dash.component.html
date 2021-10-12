@@ -2,138 +2,16 @@
   class="menu-dash"
   [ngClass]="{'menu-dash--toogle': toggle}">
 
-  <div class="menu-dash__item">
-
-    <a
-      [routerLink]="['/multi-agenda']"
-      *ngIf="!!permissions?.multiAgenda"
-      (click)="onSelectItem()">
-        Multi Agenda
-    </a>
-    <a
-      [routerLink]="['/agenda']"
-      *ngIf="!!permissions?.agenda"
-      (click)="onSelectItem()">
-        Agenda
-    </a>
-    <a
-      [routerLink]="['/orcamento/busca']"
-      *ngIf="!!permissions?.orcamento"
-      (click)="onSelectItem()">
-        Orçamento
-    </a>
-    <a
-      [routerLink]="['/painel-senha']"
-      *ngIf="!!permissions?.painelSenha"
-      (click)="onSelectItem()">
-        Painel Senha
-    </a>
-    <a
-      [routerLink]="['/atendimento']"
-      *ngIf="!!permissions?.atendimento"
-      (click)="onSelectItem()">
-        Atendimento
-    </a>
-    <a
-      [routerLink]="['/pep']"
-      *ngIf="!!permissions?.pep"
-      (click)="onSelectItem()">
-        Pep
-    </a>
-    <a
-      [routerLink]="['/pep/pesquisar-prescricao']"
-      *ngIf="!!permissions?.manageProcedures"
-      (click)="onSelectItem()">
-        Gestão de Exames
-    </a>
-    <a
-      [routerLink]="['/concierge']"
-      *ngIf="!!permissions?.concierge"
-      (click)="onSelectItem()">
-        PA Digital
-    </a>
-    <a
-      [routerLink]="['/dashboard']"
-      *ngIf="!!permissions?.profileManager"
-      (click)="onSelectItem()">
-        Gerenciamento de Perfil
-    </a>
-
-    <sub-menu
-      [toggle]="!!permissions?.repasse"
-      [itemName]="'Repasse'">
-      <div subItem>
-        <a
-          [routerLink]="['/repasse/gestao-medica/base-calculo']"
-          *ngIf="!!permissions?.repasseGestaoMedicaBaseCalculo"
-          (click)="onSelectItem()">
-            Base Cálculo
-        </a>
-        <a
-          [routerLink]="['/repasse/gestao-medica/valor']"
-          *ngIf="!!permissions?.repasseGestaoMedicaValor"
-          (click)="onSelectItem()">
-            Valor Produto
-        </a>
-        <a
-          [routerLink]="['/repasse/gestao-medica/bonus']"
-          *ngIf="!!permissions?.repasseGestaoMedicaBonus"
-          (click)="onSelectItem()">
-            Bônus Médico
-        </a>
-      </div>
-    </sub-menu>
-
-    <sub-menu
-      [toggle]="!!permissions?.admin"
-      [itemName]="'Administrativo'">
-      <div subItem>
-        <a
-          [routerLink]="['/admin/elegibility']"
-          *ngIf="!!permissions?.adminElegibility"
-          (click)="onSelectItem()">
-            Elegibilidade
-        </a>
-        <a
-          [routerLink]="['/admin/exames-laboratorio']"
-          *ngIf="!!permissions?.adminLabExams"
-          (click)="onSelectItem()">
-            Exames de laboratório
-        </a>
-        <a
-          [routerLink]="['/admin/regiao-coleta']"
-          *ngIf="!!permissions?.adminCollectPoint"
-          (click)="onSelectItem()">
-            Região de coleta
-        </a>
-      </div>
-    </sub-menu>
-
+  <div class="options">
+    <a [routerLink]="['/home']" (click)="handleOption()">{{texts.optionList.home[languageService.language] | uppercase}}</a>
+    <a [routerLink]="['/register']" (click)="handleOption()">{{texts.optionList.register[languageService.language] | uppercase}}</a>
+    <a [routerLink]="['/teste']" (click)="handleOption()">Teste</a>
   </div>
 
-  <div class="bottom-container">
-    <div class="option">
-      <button
-        class="btn btn--gray option__button"
-        (click)="onUserOption()">
-          <fa-icon [icon]="fontAwesome.faCog"></fa-icon>
-          <p>opções do usuário</p>
-      </button>
-    </div>
-
-    <div class="footer">
-      <div class="footer__username">
-        <fa-icon [icon]="fontAwesome.faUser"></fa-icon>
-        <p>{{user?.username}}</p>
-      </div>
-
-      <button class="btn footer__logout" (click)="onLogout()">Sair</button>
-    </div>
+  <div class="languages">
+    <button style="cursor: pointer;" (click)="languageService.setLanguagePT()">PT</button>
+    <button style="cursor: pointer;" (click)="languageService.setLanguageEN()">EN</button>
   </div>
 
+  <!-- Adicionar marca dagua de mandala -->
 </section>
-
-<user-options
-  [show]="toggleUserOption.status"
-  (onClose)="toggleUserOption.hide()">
-</user-options>
