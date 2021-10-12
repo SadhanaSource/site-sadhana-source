@@ -1,43 +1,88 @@
 // Angular
 import {
   Component,
+  EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
-  EventEmitter,
+  QueryList,
+  SimpleChanges,
+  ViewChildren
 } from '@angular/core';
 
+// Externals
+import { faCog, faUser } from '@fortawesome/free-solid-svg-icons';
+
 // Services
-import { LanguageService } from 'app/services/language.service';
+
+// Interfaces
 
 // Helpers
-import { Texts } from '@texts';
+import { Toggle } from 'app/interfaces/switches.interface';
+
+// Component
+import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 @Component({
   selector: 'menu-dash',
   templateUrl: './menu-dash.component.html',
   styleUrls: ['./menu-dash.component.scss']
 })
-export class MenuDashComponent implements OnInit {
+export class MenuDashComponent implements OnInit, OnChanges {
 
   @Input() toggle: boolean = false;
 
   @Output() onClose: EventEmitter<void> = new EventEmitter();
+  @Output() logout: EventEmitter<void> = new EventEmitter();
 
-  public texts = Texts.MenuDashComponent;
+  @ViewChildren(SubMenuComponent) subMenuList: QueryList<SubMenuComponent>;
+
+  // public user: User;
+  // public permissions: Permissions;
+
+  public fontAwesome = {
+    faCog: faCog,
+    faUser: faUser,
+  };
+
+  public toggleUserOption = new Toggle();
 
   constructor(
-    public languageService: LanguageService,
-  ) { }
+    // private userManager: UserManagerService,
+  ) {
+    this._setInitialValues();
+  }
 
-  ngOnInit(): void { }
+  ngOnInit() {}
+
+  ngOnChanges(change: SimpleChanges) {
+    if (!change.toggle.currentValue) this._collapseMenu();
+  }
+
+  private _setInitialValues(): void {
+    // this.user = this.userManager.user;
+    // if (!!this.user) this.permissions = this.userManager.user.permissions;
+  }
 
   private _collapseMenu(): void {
-    this.toggle = false;
     this.onClose.emit();
+
+    if (!!this.subMenuList) this.subMenuList.forEach(_ => _.close());
   }
 
-  public handleOption(): void {
+  public onSelectItem(): void {
     this._collapseMenu();
   }
+
+  public onLogout(): void {
+    this.onClose.emit();
+    this.logout.emit();
+  }
+
+  public onUserOption(): void {
+    this.onClose.emit();
+    this.toggleUserOption.show();
+  }
+
 }

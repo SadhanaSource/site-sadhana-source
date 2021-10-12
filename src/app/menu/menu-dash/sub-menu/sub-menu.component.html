@@ -1,0 +1,21 @@
+<section>
+
+  <a
+    *ngIf="toggle"
+    (click)="onActive()">
+      {{ itemName }}
+  </a>
+
+  <div class="container" [ngClass]="{'container--toggle': !!toggleSubItem.status}">
+
+    <hr>
+
+    <div class="sub-item">
+      <ng-content select="[subItem]"></ng-content>
+    </div>
+
+    <hr>
+
+  </div>
+
+</section>

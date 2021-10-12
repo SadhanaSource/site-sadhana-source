@@ -1,14 +1,21 @@
-<section class="menu">
+<section class="menu" *ngIf="!!userManager?.user?.permissions">
 
-  <menu-toggle-button
+  <menu-toggle
     class="menu__toogle-button"
-    [toggle]="checkMenu"
+    [toggle]="toggleMenu.status"
     (onClick)="onToggleClick($event)">
-  </menu-toggle-button>
+  </menu-toggle>
 
   <menu-dash
-    [toggle]="checkMenu"
-    (onClose)="checkMenu = false">
+    [toggle]="toggleMenu.status"
+    (onClose)="toggleMenu.hide()"
+    (logout)="logout()">
   </menu-dash>
+
+  <div
+    class="black-bg"
+    *ngIf="toggleMenu.status"
+    (click)="toggleMenu.hide()">
+  </div>
 
 </section>

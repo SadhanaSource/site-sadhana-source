@@ -1,30 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+
 
 import { MenuComponent } from './menu.component';
-import { ToggleButtonComponent } from './toggle-button/toggle-button.component';
+import { MenuToggleComponent } from './menu-toggle/menu-toggle.component';
+import { SubMenuComponent } from './menu-dash/sub-menu/sub-menu.component';
 import { MenuDashComponent } from './menu-dash/menu-dash.component';
-import { HomeComponent } from '../content/home/home.component';
-
-export const routes: Routes = [{
-  path: '',
-  component: HomeComponent,
-}];
 
 @NgModule({
   declarations: [
     MenuComponent,
-    ToggleButtonComponent,
+    MenuToggleComponent,
     MenuDashComponent,
+    SubMenuComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule,
   ],
   exports: [
     MenuComponent,
-  ]
+  ],
 })
-
 export class MenuModule { }

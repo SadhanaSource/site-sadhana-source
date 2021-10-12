@@ -1,33 +1,51 @@
-@import "variables.scss";
+@import "~variables.scss";
 
 $width-dash: 25vw;
 $width-dash-mobile: 100vw;
 
-.menu-dash {
-  background: linear-gradient(
-    -45deg,
-    #f9ae9f, #f9ae9f 60%, #fcd7cf
-  );
-  // melhorar essas cores
+%anchor {
+  display: block;
+  user-select: none;
+  cursor: pointer;
+  color: $white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  padding: 0.75rem;
+  transition: ease-out 0.25s;
+  width: 100%;
 
-  top: -$header-height;
-  position: absolute;
-  width: $width-dash;
-  height: 100vh;
-  left: -$width-dash;
-  transition: .3s ease;
+  &:hover {
+    background-color: $lime-green;
+    color: $dark-purple;
+    border-radius: $default-border-radius;
+  }
+}
+
+.menu-dash {
+  z-index: 42;
+  background-color: $dark-purple;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
-  @include mobile {
+  position: absolute;
+  top: -$ma-header-height;
+  left: -$width-dash;
+  padding: 1.5rem;
+
+  width: $width-dash;
+  height: 100%;
+
+  transition: 0.3s ease;
+
+  @include smartphones {
     left: -$width-dash-mobile;
     width: $width-dash-mobile;
   }
 
-  @include mobile(landscape) {
+  @include smartphones(landscape) {
     left: -$width-dash-mobile;
     width: $width-dash-mobile;
   }
@@ -37,29 +55,78 @@ $width-dash-mobile: 100vw;
     transition: .3s ease;
   }
 
-  .options {
+  &__item {
     position: relative;
-    top: calc(1rem + #{$header-height});
+    top: 2rem;
+
+    width: 100%;
+    margin-bottom: 2rem;
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding-right: 0.5rem;
+
+    overflow-y: auto;
 
     a {
-      cursor: pointer;
-      color: $guru-pink;
-      font-family: 'Roboto', sans-serif;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: .75rem;
+      @extend %anchor;
+    }
+
+    sub-menu {
+      width: 100%;
     }
   }
 
-  .languages {
-    width: 50%;
-    display: flex;
-    justify-content: space-evenly;
-    display: relative;
-    margin-bottom: 1rem;
+  .option {
+    align-self: flex-start;
+
+    margin: 1rem 0rem;
+
+    &__button {
+      display: flex;
+      justify-content: center;
+
+      height: 2rem;
+
+      p {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .bottom-container {
+    width: 100%;
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+
+      &__username {
+        display: flex;
+        align-items: center;
+
+        color: $lime-green;
+        font-size: 1.1em;
+
+        padding: .5rem;
+        border: solid 2px $lime-green;
+        border-radius: $default-border-radius;
+        cursor: wait;
+
+        p {
+          margin-left: 0.25rem;
+          color: $lime-green;
+        }
+      }
+
+      &__logout {
+        height: calc(#{$ma-header-height} / 2);
+        color: $dark-purple;
+      }
+    }
   }
 }

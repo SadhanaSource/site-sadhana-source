@@ -1,21 +1,35 @@
-import { Component, Input, OnInit } from '@angular/core';
+// Angular
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Interfaces
+import { Toggle } from 'app/interfaces/switches.interface';
+
+// Services
 
 @Component({
-  selector: 'app-menu',
+  selector: 'mint-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-
 export class MenuComponent implements OnInit {
 
-  public checkMenu: boolean = false;
+  public toggleMenu = new Toggle();
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  public onToggleClick(event): void {
-    this.checkMenu = event;
+  public onToggleClick( event: boolean ): void {
+    (event)
+    ? this.toggleMenu.show()
+    : this.toggleMenu.hide();
   }
+
+  public logout(): void {
+  }
+
 }
